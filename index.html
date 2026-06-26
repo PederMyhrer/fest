@@ -623,7 +623,6 @@
       <div class="rsvp-conditional" id="rsvp-conditional">
         <div>
           <div class="rsvp-conditional-inner">
-            <input type="text" placeholder="Allergier (valgfritt)" id="dietary">
             <textarea placeholder="Melding til oss (valgfritt)" id="message" rows="3"></textarea>
           </div>
         </div>
@@ -662,7 +661,7 @@
 </div><!-- /card -->
 
 <script>
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyop_4fdGWc2K6nWAZciDDwpfcX6OVUQpKjpj5HoXTOiIBUQ1y4bVWUkabQTuXC9cww/exec';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzwA_sU_AWGLGAvjnv9bSFHgcokJaQC70MjXkPBj-II__iYnWr0wNZfM5LmltojyE542Q/exec';
 
   function toggleConditional(val) {
     document.getElementById('rsvp-conditional').classList.toggle('open', val === 'ja');
@@ -673,7 +672,6 @@
     const name      = document.getElementById('name').value.trim();
     const email     = document.getElementById('email').value.trim();
     const attending = document.getElementById('attending').value;
-    const dietary   = document.getElementById('dietary').value.trim();
     const message   = document.getElementById('message').value.trim();
     if (!name || !attending) { alert('Vennligst fyll ut navn og om du kommer.'); return; }
     const btn = document.getElementById('rsvp-btn');
@@ -681,7 +679,7 @@
     try {
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST', mode: 'no-cors',
-        body: new URLSearchParams({ name, email, attending, dietary, message })
+        body: new URLSearchParams({ name, email, attending, message })
       });
     } catch (_) {}
     const firstName = name.split(' ')[0];
